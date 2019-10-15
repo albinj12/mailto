@@ -1,7 +1,8 @@
 import openpyxl
 import smtplib
+import getpass
 
-mailID = []
+mail_list = []
 
 path = input("Enter path of the excel file: ")
 
@@ -16,7 +17,7 @@ while True:
     if(cell_obj.value==None):
         break
     else:
-        mailID.append(cell_obj.value)
+        mail_list.append(cell_obj.value)
     i+=1
 
 
@@ -24,11 +25,14 @@ s = smtplib.SMTP('smtp.gmail.com',587)
 
 s.starttls()
 
-s.login("testu7812@gmail.com","7812@testu")
+mailID = input("Enter your mailID")
+password = getpass.getpass(prompt ="Enter your mail password: ")
+
+s.login(mailID,password)
 
 message = "This is a test message"
 
-for i in range(len(mailID)):
-    s.sendmail("testu7812@gmail.com",mailID[i],message)
+for i in range(len(mail_list)):
+    s.sendmail(mailID,mail_list[i],message)
 
 s.quit()
