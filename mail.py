@@ -19,6 +19,16 @@ while True:
         mailID.append(cell_obj.value)
     i+=1
 
-i=0
+
+s = smtplib.SMTP('smtp.gmail.com',587)
+
+s.starttls()
+
+s.login("testu7812@gmail.com","7812@testu")
+
+message = "This is a test message"
+
 for i in range(len(mailID)):
-print(mailID[i])
+    s.sendmail("testu7812@gmail.com",mailID[i],message)
+
+s.quit()
