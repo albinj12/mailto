@@ -9,7 +9,7 @@ path = input("Enter path of the excel file: ")
 wb_obj = openpyxl.load_workbook(path) 
 sheet_obj = wb_obj.active
 
-column = int(input("Enter the column of mail-ID"))
+column = int(input("Enter the column of mail-ID:"))
 
 i=1
 while True:
@@ -30,7 +30,7 @@ password = getpass.getpass(prompt ="Enter your mail password: ")
 
 s.login(mailID,password)
 
-message = "This is a test message"
+message = input("\nEnter message:\n")
 
 for i in range(len(mail_list)):
     s.sendmail(mailID,mail_list[i],message)
